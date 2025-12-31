@@ -14,7 +14,7 @@ let userData = {
   currency: "INR",
 }
 
-const RAZORPAY_PAYMENT_LINK = "https://rzp.io/rzp/5Tyk8eh"
+const RAZORPAY_PAYMENT_LINK = "https://rzp.io/rzp/mmMYRXug"
 
 const GOOGLE_SHEETS_URL =
   "https://docs.google.com/spreadsheets/d/1yBqnxoOgiDYLgcACr5hwg8yh8eTvi2Y5sOXS4_h9ZSg/edit?usp=sharing"
