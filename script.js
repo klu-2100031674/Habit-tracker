@@ -33,8 +33,8 @@ function sendConfirmationEmail(name, email, paymentId, pdfUrl, sheetUrl) {
   console.log("[v0] Sending email with parameters:")
   console.log("  - buyer_name:", name)
   console.log("  - buyer_email:", email)
-  console.log("  - signed_pdf_url:", pdfUrl)
-  console.log("  - sheet_force_copy_url:", sheetUrl)
+  console.log("  - pdf_url:", pdfUrl)
+  console.log("  - sheet_url:", sheetUrl)
 
   window.emailjs
     .send(
@@ -43,8 +43,10 @@ function sendConfirmationEmail(name, email, paymentId, pdfUrl, sheetUrl) {
       {
         buyer_name: name,
         buyer_email: email,
-        signed_pdf_url: pdfUrl,
-        sheet_force_copy_url: sheetUrl,
+        pdf_url: pdfUrl,
+        sheet_url: sheetUrl,
+        payment_id: paymentId,
+        amount: "₹29",
       },
     )
     .then(
@@ -487,8 +489,10 @@ async function verifyPaymentWithBackend(paymentId, email, name) {
         {
           buyer_name: name,
           buyer_email: email,
-          signed_pdf_url: data.pdfUrl,
-          sheet_force_copy_url: data.sheetUrl,
+          pdf_url: data.pdfUrl,
+          sheet_url: data.sheetUrl,
+          payment_id: paymentId,
+          amount: "₹29",
         },
       )
       .catch(() => {

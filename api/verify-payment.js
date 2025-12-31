@@ -166,6 +166,9 @@ module.exports = async (req, res) => {
     console.log("═══════════════════════════════════════")
     console.log("✅ VERIFICATION COMPLETE")
     console.log("Email Sent:", emailSent ? "YES" : "NO")
+    if (!emailSent) {
+      console.log("💡 Tip: Check if EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID, and EMAILJS_PRIVATE_KEY are set in Render environment variables.")
+    }
     console.log("═══════════════════════════════════════")
 
     return res.status(200).json({
@@ -173,6 +176,8 @@ module.exports = async (req, res) => {
       emailSent,
       pdfUrl,
       sheetUrl,
+      paymentId,
+      amount: `₹${payment.amount / 100}`,
       message: emailSent 
         ? "Payment verified and email sent successfully" 
         : "Payment verified (email delivery pending)",
