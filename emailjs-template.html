@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Your Habit Tracker — Download</title>
+</head>
+
+<body style="margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background:#f6f7fb;color:#111;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px;">
+    <tr>
+      <td align="center">
+
+        <table width="620" cellpadding="0" cellspacing="0"
+          style="background:#ffffff;border-radius:12px;box-shadow:0 6px 24px rgba(18,24,40,0.06);">
+
+          <!-- HEADER -->
+          <tr>
+            <td style="padding:28px 32px 12px;">
+              <h1 style="margin:0;font-size:20px;font-weight:700;color:#101827;">
+                Thanks for your purchase 🎉
+              </h1>
+              <p style="margin:8px 0 0;color:#475569;">
+                Hi <strong>{{buyer_name}}</strong>, your payment was successful.
+              </p>
+            </td>
+          </tr>
+
+          <!-- DOWNLOADS -->
+          <tr>
+            <td style="padding:18px 32px;border-top:1px solid #eef2f6;">
+              
+              <strong style="color:#0f172a;">📄 PDF Guide</strong>
+              <p style="color:#344054;margin:6px 0 12px;">
+                Click below to download your PDF guide.
+              </p>
+              <a href="{{pdf_url}}" target="_blank"
+                style="display:inline-block;padding:12px 18px;border-radius:8px;
+                       background:#0b74ff;color:#fff;text-decoration:none;font-weight:600;">
+                Download PDF Guide
+              </a>
+
+              <br><br>
+
+              <strong style="color:#0f172a;">📊 Habit Tracker (Google Sheets)</strong>
+              <p style="color:#344054;margin:6px 0 12px;">
+                Open the tracker and choose <em>File → Make a copy</em>.
+              </p>
+              <a href="{{sheet_url}}" target="_blank"
+                style="display:inline-block;padding:12px 18px;border-radius:8px;
+                       background:#16a34a;color:#fff;text-decoration:none;font-weight:600;">
+                Open Habit Tracker
+              </a>
+
+              <br><br>
+
+              <!-- PAYMENT INFO -->
+              <table width="100%" cellpadding="0" cellspacing="0"
+                style="background:#f8fafc;border:1px solid #eef2f6;border-radius:8px;padding:12px;">
+                <tr>
+                  <td style="font-size:13px;color:#344054;">
+                    <strong>Payment ID:</strong> {{payment_id}}<br>
+                    <strong>Amount Paid:</strong> {{amount}}
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="padding:18px 32px 28px;">
+              <p style="color:#475569;margin:0 0 10px;">
+                Need help? Reply to this email or contact
+                <strong>support@trackdaily.com</strong>
+              </p>
+
+              <hr style="border:none;border-top:1px solid #eef2f6;margin:16px 0;">
+
+              <p style="font-size:12px;color:#98a2b3;margin:0;">
+                © 2025 TrackDaily · Secure payments · Instant delivery
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

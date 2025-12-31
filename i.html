@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Razorpay Payment Checker</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 40px;
+    }
+    input, button {
+      padding: 10px;
+      width: 320px;
+      margin-top: 10px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Razorpay Payment Status</h2>
+
+<input
+  type="text"
+  id="paymentId"
+  placeholder="Enter Razorpay Payment ID"
+/>
+<br>
+<button onclick="verifyPayment()">Verify Payment</button>
+
+<div id="result"></div>
+
+<script>
+function verifyPayment() {
+  const paymentId = document.getElementById("paymentId").value
+  const result = document.getElementById("result")
+
+  if (!paymentId) {
+    result.innerText = "Enter a payment ID"
+    return
+  }
+
+  result.innerText = "Checking payment..."
+
+  fetch("http://localhost:3000/api/verify-payment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ payment_id: paymentId }),
+  })
+    .then(res => res.json())
+    .then(data => {
+      result.innerText = data.message
+    })
+    .catch(() => {
+      result.innerText = "Error checking payment"
+    })
+}
+</script>
+
+</body>
+</html>
