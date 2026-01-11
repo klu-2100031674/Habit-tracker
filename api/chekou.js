@@ -3,6 +3,17 @@ const express = require("express")
 const axios = require("axios")
 const cors = require("cors")
 
+// ═══════════════════════════════════════════════════════════════════════════
+// 🔍 PAYMENT VERIFICATION MODULE - KEY SOURCE TRACKING
+// ═══════════════════════════════════════════════════════════════════════════
+// This file uses HARDCODED Razorpay credentials (see lines 22-23 below).
+// If you see "TEST mode" in logs, check the following:
+//   1. The hardcoded RAZORPAY_KEY_ID value on line 22 of this file
+//   2. Environment variables if using api/verify-payment.js instead
+// 
+// This file logs key mode (TEST/LIVE) and source at startup.
+// ═══════════════════════════════════════════════════════════════════════════
+
 const app = express()
 
 app.use(express.json())
@@ -17,6 +28,16 @@ app.use(
 
 const RAZORPAY_KEY_ID = "rzp_live_S2TmOEqqV6FxJP"
 const RAZORPAY_KEY_SECRET = "wY2yF7werFeiGKAZZCDWXJgL"
+
+// Detect and log key mode
+const isTestMode = RAZORPAY_KEY_ID.startsWith("rzp_test")
+const keyMode = isTestMode ? "TEST" : "LIVE"
+console.log(`[api/chekou.js] Razorpay Key Mode: ${keyMode}`)
+console.log(`[api/chekou.js] Key Source: HARDCODED in api/chekou.js (line 22)`)
+console.log(`[api/chekou.js] Key ID: ${RAZORPAY_KEY_ID}`)
+if (isTestMode) {
+  console.warn(`⚠️ WARNING: Using TEST mode keys in api/chekou.js`)
+}
 
 async function verifyPaymentHandler(req, res) {
   // Accept either snake_case `payment_id` or camelCase `paymentId` from clients

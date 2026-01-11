@@ -1,6 +1,21 @@
 require("dotenv").config()
 const axios = require("axios")
 
+// ═══════════════════════════════════════════════════════════════════════════
+// 🔍 PAYMENT VERIFICATION MODULE - KEY SOURCE TRACKING  
+// ═══════════════════════════════════════════════════════════════════════════
+// This file uses ENVIRONMENT VARIABLES for Razorpay credentials:
+//   - process.env.RAZORPAY_KEY_ID
+//   - process.env.RAZORPAY_KEY_SECRET
+//
+// If you see "TEST mode" in logs, check:
+//   1. Your .env file in the project root
+//   2. Environment variables in your hosting platform (Render, Vercel, etc.)
+//   3. The console logs will show the key being used and its source
+//
+// This file logs key mode (TEST/LIVE) and source on each verification request.
+// ═══════════════════════════════════════════════════════════════════════════
+
 module.exports = async (req, res) => {
   // Handle preflight
   if (req.method === "OPTIONS") {
@@ -45,7 +60,18 @@ module.exports = async (req, res) => {
       })
     }
 
-    console.log("🔐 Using Razorpay Key:", keyId)
+    // Detect and log key mode
+    const isTestMode = keyId.startsWith("rzp_test")
+    const keyMode = isTestMode ? "TEST" : "LIVE"
+    console.log("═══════════════════════════════════════")
+    console.log(`🔐 Razorpay Key Mode: ${keyMode}`)
+    console.log(`🔐 Key Source: ENVIRONMENT VARIABLE (process.env.RAZORPAY_KEY_ID)`)
+    console.log(`🔐 Using Razorpay Key: ${keyId}`)
+    if (isTestMode) {
+      console.warn(`⚠️ WARNING: Using TEST mode keys from environment variables`)
+      console.warn(`⚠️ Check your .env file or hosting platform environment variables`)
+    }
+    console.log("═══════════════════════════════════════")
 
     // ✅ VERIFY PAYMENT WITH RAZORPAY
     console.log("🔍 Verifying payment with Razorpay API...")
