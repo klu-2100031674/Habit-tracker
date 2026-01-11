@@ -10,7 +10,7 @@ The application was getting "test mode" somewhere in the payment code, and it wa
 The application has **two separate payment verification modules** that use **different credential sources**:
 
 #### 1. `/api/chekou.js`
-- **Credential Source**: HARDCODED in the file (lines 22-23)
+- **Credential Source**: HARDCODED in the file
 - **Current Key**: `rzp_live_S2TmOEqqV6FxJP` (LIVE mode)
 - **Key Type Detection**: Automatically detects if key starts with `rzp_test` or `rzp_live`
 - **Logging**: Shows key mode and source when the module is loaded
@@ -37,7 +37,7 @@ Both payment verification files now include comprehensive logging to identify:
 #### When using LIVE keys (api/chekou.js):
 ```
 [api/chekou.js] Razorpay Key Mode: LIVE
-[api/chekou.js] Key Source: HARDCODED in api/chekou.js (line 22)
+[api/chekou.js] Key Source: HARDCODED in api/chekou.js
 [api/chekou.js] Key ID: rzp_live_S2TmOEqqV6FxJP
 ```
 
@@ -87,7 +87,7 @@ grep "RAZORPAY_KEY_ID" api/chekou.js
 3. Restart the server
 
 ### For api/chekou.js:
-1. Edit the file directly (line 22)
+1. Edit the file directly and locate the `RAZORPAY_KEY_ID` constant
 2. Change the `RAZORPAY_KEY_ID` constant value
 3. Restart the server
 
