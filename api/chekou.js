@@ -15,8 +15,8 @@ app.use(
   }),
 )
 
-const RAZORPAY_KEY_ID = "rzp_test_Rqipp0WBSPD1bi"
-const RAZORPAY_KEY_SECRET = "BdJjEG4ob2kfs36w5hB9csi7"
+const RAZORPAY_KEY_ID = "rzp_live_S2TmOEqqV6FxJP"
+const RAZORPAY_KEY_SECRET = "wY2yF7werFeiGKAZZCDWXJgL"
 
 async function verifyPaymentHandler(req, res) {
   // Accept either snake_case `payment_id` or camelCase `paymentId` from clients
