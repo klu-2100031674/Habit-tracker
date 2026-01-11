@@ -99,9 +99,29 @@ grep "RAZORPAY_KEY_ID" api/chekou.js
 4. **Live Mode for Production**: Use live keys (`rzp_live_*`) only in production
 5. **Monitor Logs**: Check server logs regularly to ensure correct key mode is being used
 
-## Security Note
+## Security Notes
 
-⚠️ The current code has hardcoded credentials in `api/chekou.js`. Consider:
-- Moving all credentials to environment variables
-- Removing hardcoded credentials from the codebase
-- Using a secrets management system for production
+⚠️ **IMPORTANT SECURITY ISSUES IDENTIFIED:**
+
+1. **Hardcoded Credentials in api/chekou.js**: The current code has production credentials hardcoded in the source code. This is a security risk because:
+   - Credentials are exposed in version control history
+   - Anyone with repository access can see the live API keys
+   - Keys cannot be rotated without code changes
+
+2. **Recommended Actions**:
+   - Move all credentials from `api/chekou.js` to environment variables
+   - Use `.env` file for local development
+   - Use hosting platform's secret management for production
+   - Rotate any exposed API keys
+   - Consider using a secrets management system like AWS Secrets Manager, HashiCorp Vault, etc.
+
+3. **This PR's Scope**: This PR adds logging to identify where test mode keys are coming from. It does not fix the pre-existing security issue of hardcoded credentials, which should be addressed in a separate security-focused PR.
+
+## Exposed Credentials Warning
+
+⚠️ The live Razorpay key ID (`rzp_live_S2TmOEqqV6FxJP`) is currently visible in:
+- The source code (`api/chekou.js`)
+- This documentation
+- The logs output
+
+**Action Required**: Consider this key as potentially compromised and rotate it immediately. Update the new key in environment variables instead of hardcoding it.
